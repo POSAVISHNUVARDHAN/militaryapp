@@ -17,7 +17,10 @@ const app = express();
 const PORT = 5000;
 
 // Middlewares
-app.use(cors());
+app.use(cors({
+  origin: "https://army2.vercel.app", // your Vercel frontend URL
+}));
+
 app.use(bodyParser.json());
 
 // Routes
@@ -30,6 +33,8 @@ app.use('/api/transfers', transferRoutes);
 app.use('/api', purchasesRoutes);
 app.use('/api', dashboardRouter);
 app.use('/api/purchases', purchasesRouter);
+app.use(express.json()); // Needed to read POST request body
+
 
 
 
